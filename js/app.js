@@ -37,21 +37,24 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
  var decks = document.querySelector('.deck');
- var openedCards = [];
-
+ let openedCards = [];
+ let isTimeout = false;
+ var restart = document.querySelector('.restart');
   window.onload = function(){
       decks.addEventListener('click', function(){
-        var clicked = event.target;
-        if(clicked.classList.contains('card') && openedCards.length < 2){
-          if( !clicked.classList.contains('match') && !openedCards.includes(clicked)){   //to match upcoming cards other than already matched
-          openCard(clicked);
-          openedCards.push(clicked);    //adds to array of opened card to restrict only 2 open cards
-          if(openedCards.length == 2){  //checks remaining cards to  match
-            matchCard();
+        if(!isTimeout){
+            var clicked = event.target;
+            if(clicked.classList.contains('card') && openedCards.length < 2){
+              if( !clicked.classList.contains('match') && !openedCards.includes(clicked)){   //to match upcoming cards other than already matched
+                  openCard(clicked);
+                  openedCards.push(clicked);    //adds to array of opened card to restrict only 2 open cards
+                  if(openedCards.length == 2){  //checks remaining cards to  match
+                    matchCard();
+                  }
+              }
+            }
           }
-        }
-      }
-    });
+        });
   }
 
 function openCard(clicked){
@@ -67,8 +70,20 @@ function matchCard(){
     c1.classList.toggle('match');
   }
   else {
-      openCard(c1);
-      openCard(c2);
-      openedCards=[];
+    isTimeout = true; // time out to disappear after 1sec
+      setTimeout(function(){
+        openCard(c1);
+        openCard(c2);
+        openedCards=[];
+      },1000);
+      isTimeout = false;  // No card is clicked until timout is set false!
   }
 }
+
+restart.addEventListener('click',function(){
+    var cards = document.querySelectorAll('ul.deck li');
+    for(i=0;i<cards.length;i++){
+      cards[i].className = "card";
+    }
+    shuffle(Array.from(cards));
+});
