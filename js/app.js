@@ -72,13 +72,14 @@ function matchCard(){
   if(c1.firstElementChild.className === c2.firstElementChild.className){
     c2.classList.toggle('match');
     c1.classList.toggle('match');
+    openedCards = [];
   }
   else {
     isTimeout = true; // time out to disappear after 1sec
       setTimeout(function(){
         openCard(c1);
         openCard(c2);
-        openedCards=[];
+        openedCards = [];   //this line saved me after big research and help from community. (Making it a comment so I'll be thankful in future)
       },1000);
       isTimeout = false;  // No card is clicked until timeout is set false!
   }
