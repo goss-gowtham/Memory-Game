@@ -40,12 +40,16 @@ function shuffle(array) {
  let openedCards = [];
  let isTimeout = false;
  var restart = document.querySelector('.restart');
+ let moves = 0;
+ let move = document.querySelector('.moves');
   window.onload = function(){
       decks.addEventListener('click', function(){
         if(!isTimeout){
             var clicked = event.target;
             if(clicked.classList.contains('card') && openedCards.length < 2){
               if( !clicked.classList.contains('match') && !openedCards.includes(clicked)){   //to match upcoming cards other than already matched
+                  moves++;
+                  move.innerHTML = moves;
                   openCard(clicked);
                   openedCards.push(clicked);    //adds to array of opened card to restrict only 2 open cards
                   if(openedCards.length == 2){  //checks remaining cards to  match
