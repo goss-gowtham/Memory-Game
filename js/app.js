@@ -92,5 +92,8 @@ restart.addEventListener('click',function(){
     }
     moves = 0;
     move.innerHTML = 0; //for restarting, moves also restarts
-    shuffle(Array.from(cards));
+    var shuffledCard = shuffle(Array.from(cards));
+    for(newCard of shuffledCard){
+      decks.appendChild(newCard);
+    }
 });
