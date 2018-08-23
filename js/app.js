@@ -49,7 +49,7 @@ function shuffle(array) {
             if(clicked.classList.contains('card') && openedCards.length < 2){
               if( !clicked.classList.contains('match') && !openedCards.includes(clicked)){   //to match upcoming cards other than already matched
                   moves++;
-                  move.innerHTML = moves;
+                  move.innerHTML = moves; //added moves count
                   openCard(clicked);
                   openedCards.push(clicked);    //adds to array of opened card to restrict only 2 open cards
                   if(openedCards.length == 2){  //checks remaining cards to  match
@@ -80,7 +80,7 @@ function matchCard(){
         openCard(c2);
         openedCards=[];
       },1000);
-      isTimeout = false;  // No card is clicked until timout is set false!
+      isTimeout = false;  // No card is clicked until timeout is set false!
   }
 }
 
@@ -89,5 +89,7 @@ restart.addEventListener('click',function(){
     for(i=0;i<cards.length;i++){
       cards[i].className = "card";
     }
+    moves = 0;
+    move.innerHTML = 0; //for restarting, moves also restarts
     shuffle(Array.from(cards));
 });
