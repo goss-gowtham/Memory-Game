@@ -87,13 +87,12 @@ function matchCard(){
 
 restart.addEventListener('click',function(){
     var cards = document.querySelectorAll('ul.deck li');
-    for(i=0;i<cards.length;i++){
-      cards[i].className = "card";
-    }
+    decks.innerHTML = "";
     moves = 0;
     move.innerHTML = 0; //for restarting, moves also restarts
-    var shuffledCard = shuffle(Array.from(cards));
+    var shuffledCard = shuffle(Array.from(cards));  //shuffles the cards for new Game
     for(newCard of shuffledCard){
-      decks.appendChild(newCard);
+      newCard.className = "card";
+      decks.appendChild(newCard); //updates shuffled cards to DOM
     }
 });
