@@ -196,4 +196,5 @@ function gameOver()
   stopClock();
   writePopupStats();
   togglePopup();  //That's Game Over!
+  matched = 0; //replaying game is successful now! 
 }
