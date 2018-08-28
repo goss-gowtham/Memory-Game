@@ -128,7 +128,7 @@ h1 {
 }
 button {
   height: 30px;
-  weight: 60px;
+  width: 60px;
 }
 .hide {
   display: none;
