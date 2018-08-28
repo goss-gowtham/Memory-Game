@@ -108,12 +108,12 @@ function displayTime()
 
 function stopClock()
 {
-  clearInterval(clockId);
+  clearInterval(clockId); //for stopping time after all cards matched
 }
 
 function checkScore()
 {
-  if (moves === 20 || moves === 32) hideStar();
+  if (moves === 20 || moves === 32) hideStar(); // setting stars range acc to moves
 }
 
 function hideStar()
@@ -124,7 +124,7 @@ function hideStar()
     if (star.style.display !== 'none')
     {
       star.style.display = 'none';
-      starCount--;
+      starCount--;  //a count on number of stars for scorecard use.
       break;
     }
   }
@@ -139,7 +139,7 @@ function matchCard()
     c2.classList.toggle('match');
     c1.classList.toggle('match');
     openedCards = [];
-    matched++;
+    matched++;  // to keep count on finishing Game.
   }
   else
   {
@@ -188,7 +188,7 @@ function writePopupStats()
   const clockTime = document.querySelector('.timer').innerHTML;
   const movesStats = document.querySelector('.popup-moves');
   const starsStats = document.querySelector('.popup-stars');
-  timeStats.innerHTML = `Time = ${clockTime}`;
+  timeStats.innerHTML = `Time = ${clockTime}`;  //displaying in score card popup
   starsStats.innerHTML = `Stars = ${starCount}`;
   movesStats.innerHTML = `Moves = ${moves}`;
 }
@@ -197,5 +197,5 @@ function gameOver()
 {
   stopClock();
   writePopupStats();
-  togglePopup();
+  togglePopup();  //That's Game Over!
 }
