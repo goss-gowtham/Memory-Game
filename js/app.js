@@ -42,6 +42,13 @@ function shuffle(array) {
  var restart = document.querySelector('.restart');
  let moves = 0;
  let move = document.querySelector('.moves');
+ let clockId;
+ let min = document.querySelector('.min');
+ let sec = document.querySelector('.sec');
+ let time = 0;
+ let clockOff = true;
+ let starCount = 3;
+ let matched = 0;
   window.onload = function(){
       decks.addEventListener('click', function(){
         if(!isTimeout){
@@ -50,20 +57,66 @@ function shuffle(array) {
               if( !clicked.classList.contains('match') && !openedCards.includes(clicked)){   //to match upcoming cards other than already matched
                   moves++;
                   move.innerHTML = moves; //added moves count
+                  if(clockOff){
+                    startClock();
+                    clockOff = false;
+                  }
                   openCard(clicked);
                   openedCards.push(clicked);    //adds to array of opened card to restrict only 2 open cards
                   if(openedCards.length == 2){  //checks remaining cards to  match
                     matchCard();
+                    checkScore();
                   }
               }
             }
+            if(matched == 8){
+              gameOver();
+            }
           }
         });
-  }
+}
 
 function openCard(clicked){
   clicked.classList.toggle("open"); //referred from w3schools.com
   clicked.classList.toggle("show");
+}
+
+function startClock(){
+  time = 0;
+  clockId = setInterval(()=>{
+    time++;
+    displayTime();
+  }, 1000);
+}
+
+function displayTime(){
+  const timer = document.querySelector('.timer');
+  const minute = Math.floor(time/60);
+  const second = time % 60;
+  if (second < 10)
+    timer.innerHTML = `${minute}:0${second}`;
+  else
+    timer.innerHTML = `${minute}:${second}`;
+}
+
+function stopClock(){
+  clearInterval(clockId);
+}
+
+function checkScore(){
+  if(moves === 20 || moves === 32)
+    hideStar();
+}
+
+function hideStar(){
+  const starList = document.querySelectorAll('.stars li');
+  for (star of starList){
+    if(star.style.display !== 'none'){
+      star.style.display = 'none';
+      starCount--;
+      break;
+    }
+  }
 }
 
 function matchCard(){
@@ -73,6 +126,7 @@ function matchCard(){
     c2.classList.toggle('match');
     c1.classList.toggle('match');
     openedCards = [];
+    matched++;
   }
   else {
     isTimeout = true; // time out to disappear after 1sec
@@ -80,19 +134,49 @@ function matchCard(){
         openCard(c1);
         openCard(c2);
         openedCards = [];   //this line saved me after big research and help from community. (Making it a comment so I'll be thankful in future)
-      },1000);
+      },500);
       isTimeout = false;  // No card is clicked until timeout is set false!
   }
 }
 
-restart.addEventListener('click',function(){
+restart.addEventListener('click', restartGame);
+
+function restartGame(){
     var cards = document.querySelectorAll('ul.deck li');
     decks.innerHTML = "";
     moves = 0;
     move.innerHTML = 0; //for restarting, moves also restarts
+    stopClock();
+    clockOff = true;
+    time = 0;
+    displayTime();
     var shuffledCard = shuffle(Array.from(cards));  //shuffles the cards for new Game
     for(newCard of shuffledCard){
       newCard.className = "card";
       decks.appendChild(newCard); //updates shuffled cards to DOM
     }
-});
+    togglePopup();
+}
+
+document.querySelector('.popup-cancel').addEventListener('click',togglePopup);
+document.querySelector('.popup-replay').addEventListener('click',restartGame);
+function togglePopup(){
+  const popup = document.querySelector('.popup');
+  popup.classList.toggle('hide');
+}
+
+function writePopupStats(){
+  const timeStats = document.querySelector('.popup-time');
+  const clockTime = document.querySelector('.timer').innerHTML;
+  const movesStats = document.querySelector('.popup-moves');
+  const starsStats = document.querySelector('.popup-stars');
+  timeStats.innerHTML = `Time = ${clockTime}`;
+  starsStats.innerHTML = `Stars = ${starCount}`;
+  movesStats.innerHTML = `Moves = ${moves}`;
+}
+
+function gameOver(){
+  stopClock();
+  writePopupStats();
+  togglePopup();
+}
