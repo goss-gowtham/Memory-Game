@@ -39,8 +39,7 @@ var restart = document.querySelector('.restart');
 let moves = 0;
 let move = document.querySelector('.moves');
 let clockId;
-let min = document.querySelector('.min');
-let sec = document.querySelector('.sec');
+const timer = document.querySelector('.timer');
 let time = 0;
 let clockOff = true;
 let starCount = 3;
@@ -99,7 +98,6 @@ function startClock()
 
 function displayTime()
 {
-  const timer = document.querySelector('.timer');
   const minute = Math.floor(time / 60);
   const second = time % 60;
   if (second < 10) timer.innerHTML = `${minute}:0${second}`;
@@ -185,7 +183,7 @@ function togglePopup()
 function writePopupStats()
 {
   const timeStats = document.querySelector('.popup-time');
-  const clockTime = document.querySelector('.timer').innerHTML;
+  const clockTime = timer.innerHTML;
   const movesStats = document.querySelector('.popup-moves');
   const starsStats = document.querySelector('.popup-stars');
   timeStats.innerHTML = `Time = ${clockTime}`;  //displaying in score card popup
