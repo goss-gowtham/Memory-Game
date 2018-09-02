@@ -26,6 +26,6 @@ You'd have sure played Memory Game (or Matching Game) in your childhood, and the
 
 `Extra Features`: There is a timer, star rating and Moves count for your skill check on this game.
 
-##Enjoy the slice of JavaScript with this Game :)
+## Enjoy the slice of JavaScript with this Game :)
 
 Thanks note: Thanks to me and @ezioda004.fend who helped me through building this app.
