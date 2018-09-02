@@ -10,7 +10,7 @@
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array)
 {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue, randomIndex;
   while (currentIndex !== 0)
   {
@@ -32,10 +32,10 @@ function shuffle(array)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-var decks = document.querySelector('.deck');
+let decks = document.querySelector('.deck');
 let openedCards = [];
 let isTimeout = false;
-var restart = document.querySelector('.restart');
+let restart = document.querySelector('.restart');
 let moves = 0;
 let move = document.querySelector('.moves');
 let clockId;
@@ -50,7 +50,7 @@ window.onload = function()
   {
     if (!isTimeout)
     {
-      var clicked = event.target;
+      let clicked = event.target;
       if (clicked.classList.contains('card') && openedCards.length < 2)
       {
         if (!clicked.classList.contains('match') && !openedCards.includes(
@@ -130,8 +130,8 @@ function hideStar()
 
 function matchCard()
 {
-  var c1 = openedCards[0];
-  var c2 = openedCards[1];
+  let c1 = openedCards[0];
+  let c2 = openedCards[1];
   if (c1.firstElementChild.className === c2.firstElementChild.className)
   {
     c2.classList.toggle('match');
@@ -155,7 +155,7 @@ restart.addEventListener('click', restartGame);
 
 function restartGame()
 {
-  var cards = document.querySelectorAll('ul.deck li');
+  let cards = document.querySelectorAll('ul.deck li');
   decks.innerHTML = "";
   moves = 0;
   move.innerHTML = 0; //for restarting, moves also restarts
