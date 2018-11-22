@@ -14,17 +14,32 @@ body {
   background: #ffffff url('../img/geometry2.png');
   font-family: 'Coda', cursive;
 }
+@media only screen and (max-width: 850px) {
+  .deck {
+      width: 90% !important;
+  }
+  .deck .card {
+    height: 100px !important;
+    width: 100px !important;
+    margin-bottom: 10px !important;
+    margin: 5px;
+  }
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 95%;
+  margin: auto;
 }
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
 .deck {
+  position: relative;
   width: 660px;
   min-height: 680px;
   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
@@ -40,6 +55,7 @@ h1 {
 .deck .card {
   height: 125px;
   width: 125px;
+  margin-bottom: 20px;
   background: #2e3d49;
   font-size: 0;
   color: #ffffff;
