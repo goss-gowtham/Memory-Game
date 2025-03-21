@@ -1,31 +1,39 @@
-# Memory Game Project
+# Memory Game
 
-Visit my game at: goss-gowtham.github.io/Memory-Game
+Visit the game at: [goss-gowtham.github.io/Memory-Game](goss-gowtham.github.io/Memory-Game)
+
 ## Table of Contents
 
+* [Introduction](#introduction)
 * [Instructions](#instructions)
+* [Functionality](#functionality)
 * [Contributing](#contributing)
+* [Acknowledgments](#acknowledgments)
+
+## Introduction
+
+The Memory Game is a classic card matching game designed to test your memory and concentration skills. The objective is to find all matching pairs of cards in the least amount of time and with the fewest moves.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Click on a card to reveal its symbol. Click on a second card to try and find a match. If the symbols match, the cards will remain face up. If they don't match, the cards will flip back face down. Continue matching pairs until all cards are matched.
 
 ## Functionality
 
-This Memory Game has a lot of things to work on as a Developer. Here are few things you can look around in my web app:
+This Memory Game includes several features to enhance gameplay:
 
-You'd have sure played Memory Game (or Matching Game) in your childhood, and these are the same with an advanced functionality.
+*   **Shuffling Cards**: At the start of each game, the cards are shuffled to ensure a unique and challenging experience every time you play. This randomization tests your memory and prevents you from relying on previously learned patterns.
 
-`Shuffling Cards`: Whenever you win the game and try again to play, the card shuffles and making the game difficult to play everytime to test your Memory :P
+*   **Matching Check**: The game enforces a strict two-card matching rule. Only two cards can be selected at a time. Once two cards are selected, no other card can be selected until the matching attempt is resolved (either the cards match or are flipped back down).
 
-`Matching Check`: Matching is completely restricted to two cards at a time, and No other card is selected when two cards is being matched.
+*   **Timer**: A timer tracks the time elapsed during the game, adding a time-based challenge to improve your speed and efficiency in matching pairs.
 
-`Extra Features`: There is a timer, star rating and Moves count for your skill check on this game.
+*   **Star Rating**: Your performance is evaluated based on the number of moves and time taken to complete the game. A star rating system provides a visual representation of your skill level, encouraging you to strive for better results.
 
-## Enjoy the slice of JavaScript with this Game :)
+*   **Moves Count**: The game counts the number of moves you make, allowing you to monitor your progress and strategize to minimize unnecessary clicks.
 
-Thanks note: Thanks to me and @ezioda004.fend who helped me through building this app.
+## Enjoy the challenge and have fun playing the Memory Game!
+
+## Acknowledgments
+
+Special thanks to @ezioda004.fend for their assistance and contributions to this project.
